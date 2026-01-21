@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThermiReduce - Advanced Image Optimizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <canvas id="headerCanvas" width="2000" height="140"></canvas>
+        <div class="header-content">
+            <img id="logoImage" class="logo-img" style="display: none;">
+            <div class="header-text">
+                <h1 class="logo-title">
+                    <span class="logo-thermi">THERMI</span>
+                    <span class="logo-reduce">REDUCE</span>
+                </h1>
+                <p class="logo-subtitle">Advanced Image Compression System</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <div class="content-wrapper">
+            <!-- Left Panel -->
+            <div class="left-panel">
+                <!-- Input Section -->
+                <div class="section">
+                    <h2 class="section-title">[ ARCHIVOS DE ENTRADA ]</h2>
+                    <div class="card">
+                        <div class="path-display">
+                            <p id="selectedPath">No hay archivos seleccionados</p>
+                        </div>
+                        <div class="button-group">
+                            <button class="glow-button" id="btnImage" data-color="#ff6b35">
+                                <span>[ IMAGEN ]</span>
+                            </button>
+                            <button class="glow-button" id="btnFolder" data-color="#9b59b6">
+                                <span>[ CARPETA ]</span>
+                            </button>
+                        </div>
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                        <input type="file" id="folderInput" webkitdirectory directory multiple style="display: none;">
+                    </div>
+                </div>
+
+                <!-- Output Section -->
+                <div class="section">
+                    <h2 class="section-title">[ DESTINO DE SALIDA ]</h2>
+                    <div class="card">
+                        <div class="path-display">
+                            <p id="outputPath">📥 Carpeta de Descargas del navegador</p>
+                        </div>
+                        <button class="glow-button full-width" id="btnOutput" data-color="#3498db">
+                            <span>[ ℹ️ VER INFORMACIÓN ]</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Settings Section -->
+                <div class="section">
+                    <h2 class="section-title">[ CONFIGURACIÓN ]</h2>
+                    <div class="card">
+                        <div class="quality-control">
+                            <div class="quality-header">
+                                <span class="quality-label">CALIDAD:</span>
+                                <span class="quality-value" id="qualityDisplay">85%</span>
+                            </div>
+                            <div class="slider-container">
+                                <input type="range" id="qualitySlider" min="50" max="100" value="85">
+                            </div>
+                            <div class="quality-indicators">
+                                <span class="indicator-left">Menor tamaño</span>
+                                <span class="indicator-right">Mayor calidad</span>
+                            </div>
+                        </div>
+                        <div class="metadata-option">
+                            <label>
+                                <input type="checkbox" id="preserveMetadata">
+                                <span>Preservar metadata (EXIF)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <button class="glow-button optimize-button" id="btnOptimize" data-color="#00f5ff">
+                    <span>⚡ INICIAR OPTIMIZACIÓN ⚡</span>
+                </button>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="right-panel">
+                <!-- Progress Section -->
+                <div class="section">
+                    <h2 class="section-title">[ ANÁLISIS EN TIEMPO REAL ]</h2>
+                    <div class="progress-container">
+                        <canvas id="progressRing" width="220" height="220"></canvas>
+                    </div>
+                    <div class="card current-file-card">
+                        <p class="current-file-label">PROCESANDO:</p>
+                        <p class="current-file-name" id="currentFile">Esperando...</p>
+                    </div>
+                </div>
+
+                <!-- Stats Section -->
+                <div class="section">
+                    <h2 class="section-title">[ ESTADÍSTICAS ]</h2>
+                    <div class="stats-container">
+                        <div class="stat-card">
+                            <p class="stat-label">ORIGINAL</p>
+                            <div class="stat-value">
+                                <span class="stat-number" id="originalSize" style="color: #ff6b35">0.00</span>
+                                <span class="stat-unit" id="originalUnit" style="color: #ff6b35">MB</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <p class="stat-label">OPTIMIZADO</p>
+                            <div class="stat-value">
+                                <span class="stat-number" id="optimizedSize" style="color: #00f5ff">0.00</span>
+                                <span class="stat-unit" id="optimizedUnit" style="color: #00f5ff">MB</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <p class="stat-label">AHORRADO</p>
+                            <div class="stat-value">
+                                <span class="stat-number" id="savedSize" style="color: #00ff88">0.00</span>
+                                <span class="stat-unit" id="savedUnit" style="color: #00ff88">MB</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <p class="stat-label">ARCHIVOS PROCESADOS</p>
+                            <div class="stat-value">
+                                <span class="stat-number files-count" id="filesCount">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
